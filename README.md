@@ -25,7 +25,7 @@ Doniraj is a humanitarian application that connects people who want to donate wi
 ## Technologies Used
 - Frontend: HTML, CSS, JavaScript
 - Backend: Django (Python)
-- Database: PostgreSQL
+- Database: SQLite
 - Testing: Manual and automated testing with Selenium
 
 ## Project Phases
