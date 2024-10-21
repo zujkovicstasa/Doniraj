@@ -1,0 +1,65 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Organizacija profil
+{% endblock %}
+
+{% block content %}
+<!-- Author:Marija Stakic 2021/0320 -->
+<div class="container marg">
+    <!-- Profilna slika i naziv organizacije -->
+    <div class="row">
+        <div class="col-md-6">
+            {%if user.image%}
+            <img src="{{ user.image.url }}" width="300px" alt="profilna" >  
+            
+            {%endif%}
+        </div>
+        <div class="col-md-6">
+            <h2>{{ user_organization.name }}</h2>  
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-end margDesno">
+        <a href="/inbox" class="me-3 link-dark slovaVeca">  
+            <img src="/media/images/inbox.png" alt="inbox" width="35px">
+            Inbox
+        </a>
+    </div>
+    <!-- Adresa i website organizacije -->
+    <div class="row mt-3">
+        <div class="col-md-6">
+            <h4>Adresa:</h4>  
+            <p>{{ user_organization.address }}</p>  
+        </div>
+       
+            {% if user_organization.website %} 
+            <div class="col-md-6">
+                <h4>Website:</h4>
+                 <p><a href="{{ user_organization.website }}">{{ user_organization.website }}</a></p>
+            </div>
+            {% endif %}
+        
+    </div>
+
+    <!-- Opis organizacije -->
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <h3>Opis Organizacije</h3>
+            <p>{{ user_organization.description }}</p>  
+        </div>
+    </div>
+
+    <!-- Potrebni predmeti -->
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <h3>Potrebne stvari</h3>
+            <ul>
+                <li>{{ user_organization.needs_description }}</li>    
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

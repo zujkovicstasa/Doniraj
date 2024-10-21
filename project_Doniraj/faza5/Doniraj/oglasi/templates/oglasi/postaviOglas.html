@@ -1,0 +1,62 @@
+<!--#Autor: Lazar Krpovic 2021/0633-->
+{% extends 'layout.html' %}
+
+{% block title %}
+    Postavi Oglas
+{% endblock %}
+
+{% block content %}
+
+<h2 class="levo">Forma za pravljenje oglasa</h2>
+<div class="d-flex justify-content-center align-items-center marg">
+  <form id="oglasForma" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+      
+      <div>
+          <label for="{{ form.naziv.id_for_label }}">Naziv proizvoda:</label><br>
+          {{ form.naziv }}
+          {{ form.naziv.errors }}
+      </div><br><br>
+
+      <div>
+          <label for="{{ form.velicina.id_for_label }}">Veličina:</label><br>
+          {{ form.velicina }}
+          {{ form.velicina.errors }}
+      </div><br><br>
+
+      <div>
+          <label for="{{ form.stanje.id_for_label }}">Stanje:</label><br>
+          {{ form.stanje }}
+          {{ form.stanje.errors }}
+      </div><br><br>
+
+      <div>
+          <label for="{{ form.pol.id_for_label }}">Pol:</label><br>
+          {{ form.pol }}
+          {{ form.pol.errors }}
+      </div><br><br>
+
+      <div>
+          <label for="{{ form.tagovi.id_for_label }}">Tagovi:</label><br>
+          {{ form.tagovi }}
+          {{ form.tagovi.errors }}
+      </div><br><br>
+
+      <div>
+          <label for="{{ form.opis.id_for_label }}">Opis:</label><br>
+          {{ form.opis }}
+          {{ form.opis.errors }}
+      </div><br><br>
+
+      <div>
+          <label for="{{ form.slika.id_for_label }}">Slika:</label><br>
+          {{ form.slika }}
+          {{ form.slika.errors }}
+      </div><br><br>
+
+      <input type="submit" class="btn btn-danger" value="Objavi oglas">
+  </form>
+</div>
+
+{% endblock %}

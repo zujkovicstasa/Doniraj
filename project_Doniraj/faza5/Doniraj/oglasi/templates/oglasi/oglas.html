@@ -1,0 +1,33 @@
+<!--Marija Stakic 2021/0320-->
+{% extends 'layout.html' %}
+
+{% block title %}
+    Oglas
+{% endblock %}
+
+{% block content %}
+
+<div class="proizvod">
+    <div class="slika">
+        <img src="{{ oglas.slika.url }}" alt="Proizvod" id="proizvod" width="500px">  
+    </div>
+    <div class="tekst">
+        <h2>{{ oglas.naziv }}</h2>   
+        <p>{{ oglas.opis }}<br> {{ oglas.pol }}, {{ oglas.velicina }}, stanje: {{ oglas.stanje }}/5</p>  
+        <div class="row align-items-center">
+            <div class="col-auto marg profilna">
+                <a href="{% url 'users:milica' oglas.korisnik.id %}">
+                    <img src="{{ oglas.korisnik.image.url }}" alt="Profilna slika" class="manjaProfilna rounded-circle border border-dark mb-2"> 
+                </a>
+                <p class="mb-1">@{{ oglas.korisnik.username }}</p>
+                <p class="mb-1 link-secondary">{{ oglas.korisnik.oglas_set.count }} oglasa</p>
+                <a href="{% url 'chat:start-chat' oglas.korisnik.username %}" class="link-secondary">
+                    <img src="/media/images/chat.png" alt="chat" width="25px">
+                    Kontaktiraj
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

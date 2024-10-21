@@ -1,0 +1,141 @@
+<!--Autori: Marija Stakic 2021/0320, Matija Milic 2021/0088-->
+{% extends 'layout.html' %}
+
+{% block title %}
+    Pocetna
+{% endblock %}
+
+{% block content %}
+
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <span class="nav-link link-dark">Pol:</span>
+                <select class="form-select" aria-label="Pol" name="pol" id="pol-select">
+                    <option selected  value = "null">...</option>
+                    <option value="decije">Deca</option>
+                    <option value="musko">Muškarci</option>
+                    <option value="zensko">Žene</option>
+                </select>
+                <span class="nav-link link-dark">Veličina:</span>
+                <select class="form-select" aria-label="Veličina" id="velicina-select" name="velicina">
+                    <option selected value = "null">...</option>
+                    <option value="xs">XS</option>
+                    <option value="s">S</option>
+                    <option value="m">M</option>
+                    <option value="l">L</option>
+                    <option value="xl">XL</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <div class="row justify-content-start" id="results-container">
+        {% for oglas in oglasi %}
+            <div class="col-md-6 col-sm-12 col-lg-4 col-xl-3 mb-4">
+                <div class="card same-height-card" style="width: 18rem;" name="kartica">
+                    <a href="/oglasi/oglas/{{ oglas.id }}">
+                        <div class="text-center">
+                            <img src="{{ oglas.slika.url }}" class="card-img-top img-fluid" alt="{{ oglas.naziv }}">
+                        </div>
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ oglas.naziv }}</h5>
+                        <p class="card-text">{{ oglas.opis }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchForm = document.getElementById('search-form');
+        const searchInput = document.getElementById('search-input');
+        const velicinaSelect = document.getElementById('velicina-select');
+        const polSelect = document.getElementById('pol-select');
+        const resultsContainer = document.getElementById('results-container');
+    
+        searchForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const query = searchInput.value;
+            const velicina = velicinaSelect.value;
+            const pol = polSelect.value;
+    
+            fetch(`/oglasi/search/?q=${query}&velicina=${velicina}&pol=${pol}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest',
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                const oglasi = data.oglasi;
+                resultsContainer.innerHTML = '';
+                oglasi.forEach(oglas => {
+                    const card = document.createElement('div');
+                    card.className = 'col-md-6 col-sm-12 col-lg-4 col-xl-3 mb-4';
+                    card.innerHTML = `
+                        <div class="card same-height-card" style="width: 18rem;" name="kartica">
+                            <a href="/oglasi/oglas/${oglas.id}">
+                                <div class="text-center">
+                                    <img src="${oglas.slika_url}" class="card-img-top img-fluid" alt="${oglas.naziv}">
+                                </div>
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title">${oglas.naziv}</h5>
+                                <p class="card-text">${oglas.opis}</p>
+                            </div>
+                        </div>
+                    `;
+                    resultsContainer.appendChild(card);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    });
+
+    function ajax(){
+        const resultsContainer = document.getElementById('results-container');
+        fetch(`fetch_oglases`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest',
+            }
+        }).then(response => response.json())
+        .then(data => {
+            const oglasi = data.oglasi;
+            resultsContainer.innerHTML = '';
+            oglasi.forEach(oglas => {
+                const card = document.createElement('div');
+                card.className = 'col-md-6 col-sm-12 col-lg-4 col-xl-3 mb-4';
+                card.innerHTML = `
+                    <div class="card same-height-card" style="width: 18rem;" name="kartica">
+                        <a href="/oglasi/oglas/${oglas.id}">
+                            <div class="text-center">
+                                <img src="${oglas.slika_url}" class="card-img-top img-fluid" alt="${oglas.naziv}">
+                            </div>
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title">${oglas.naziv}</h5>
+                            <p class="card-text">${oglas.opis}</p>
+                        </div>
+                    </div>
+                `;
+                resultsContainer.appendChild(card);
+            });
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    setInterval(ajax, 2000);
+</script>
+
+
+{% endblock %}

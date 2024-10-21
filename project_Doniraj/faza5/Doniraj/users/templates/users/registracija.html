@@ -1,0 +1,123 @@
+<!--Autori: Matija Milic i Marija Stakic-->
+{% extends 'layout.html' %}
+
+{% block title %}
+    Registracija
+{% endblock %}
+
+{% block content %}
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="marg">
+                <form class="form-signin" method="post" onsubmit="return removeRequiredAttributes()">
+                    {% csrf_token %}
+                    <fieldset class="row mb-3">
+                        <div class="col-sm-10">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="registrationType" id="gridRadios1" value="user" 
+                                {% if not request.POST.registrationType or request.POST.registrationType == 'user' %} checked {% endif %}
+                                onclick="toggleFields('korisnik')">
+                                <label class="form-check-label" for="gridRadios1">Korisnik</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="registrationType" id="gridRadios2" value="organization" 
+                                {% if request.POST.registrationType == 'organization' %} checked {% endif %}
+                                onclick="toggleFields('organizacija')">
+                                <label class="form-check-label" for="gridRadios2">Organizacija</label>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- User Fields -->
+                    <div class="col-auto marg" id="korisnikFields" >
+                        <label class="visually-hidden" for="autoSizingInputGroup">Username</label>
+                        <div class="input-group" style="max-width: 310px;">
+                            <div class="input-group-text">@</div>
+                            <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="Username" required name="username" value="{{ request.POST.username }}">
+                        </div>
+                        <div class="col-sm-10 marg">
+                            <input type="email" class="form-control" placeholder="Email" required name="email" value="{{ request.POST.email }}">
+                            <br>
+                            <input type="password" class="form-control" placeholder="Lozinka" required name="password1">
+                            <br>
+                            <input type="password" class="form-control" placeholder="Ponovna lozinka" required name="password2">
+                        </div>
+                        {% for field in registration_form %}
+                            {% for error in field.errors %}
+                                <p style="color:red">{{ error }}</p>
+                            {% endfor %}
+                        {% endfor %}
+                        {% if registration_form.non_field_errors %}
+                            <div style="color:red">
+                                <p>{{ registration_form.non_field_errors }}</p>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Organization Fields -->
+                    <div class="col-auto marg" id="organizacijaFields" style="{% if not request.POST.registrationType or request.POST.registrationType == 'user' %}display: none;{% endif %}">
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="Ime Organizacije" name="name" value="{{ request.POST.name }}">
+                            <br>
+                            <input type="text" class="form-control" placeholder="Adresa" name="address" value="{{ request.POST.address }}">
+                            <br>
+                            <input type="text" class="form-control" placeholder="Identifikacioni broj (PIB)" name="pib" value="{{ request.POST.pib }}">
+                            <br>
+                            <input type="text" class="form-control" placeholder="Link sajta organizacije (opciono)" name="website" value="{{ request.POST.website }}">
+                            <br>
+                            <textarea class="form-control" placeholder="Opis organizacije" name="description">{{ request.POST.description }}</textarea>
+                            <br>
+                            <textarea class="form-control" placeholder="Opis potrebnih stvari" name="needs_description">{{ request.POST.needs_description }}</textarea>
+                            <br>
+                            {% for field in organization_form %}
+                                {% for error in field.errors %}
+                                    <p style="color:red">{{ error }}</p>
+                                {% endfor %}
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-danger marg">Registruj se</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleFields(type) {
+        if (type === 'korisnik') {
+            document.getElementById('korisnikFields').style.display = 'block';
+            document.getElementById('organizacijaFields').style.display = 'none';
+        } else {
+            document.getElementById('korisnikFields').style.display = 'none';
+            document.getElementById('organizacijaFields').style.display = 'block';
+        }
+    }
+
+    function removeRequiredAttributes() {
+        if (document.getElementById('gridRadios1').checked) {
+            document.querySelectorAll('#organizacijaFields input, #organizacijaFields textarea').forEach(field => {
+                field.removeAttribute('required');
+            });
+        } else {
+            document.querySelectorAll('#organizacijaFields input, #organizacijaFields textarea').forEach(field => {
+                field.addAttribute('required');
+            });
+        }
+        return true;
+    }
+
+
+    
+</script>
+
+{% endblock %}

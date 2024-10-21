@@ -1,0 +1,115 @@
+<!-- Author:Marija Stakic 2021/0320 -->
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+            Django App
+        {% endblock %} 
+    </title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
+    <script src="https://unpkg.com/htmx.org@next/dist/htmx.min.js"></script>
+    <script src="https://unpkg.com/htmx.org/dist/ext/ws.js"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg" id="mainNav">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <!-- Logo -->
+                <div class="col-auto">
+                    <a class="navbar-brand" href="/oglasi">
+                        <img src="/media/images/doniraj.png" alt="logo" width="50">
+                    </a>
+                </div>
+                <!-- Početna -->
+                <div class="col-auto levoMin d-none d-md-block">
+                    <a href="/oglasi" class="nav-link link-dark" id="pocetna" style="font-size:18px;">Početna</a>
+                </div>
+                <!-- Pretraživanje -->
+                <div class="col">
+                    <form class="d-flex alling-items-center" id="search-form">
+                        <input class="form-control me-2 rounded-pill" type="search" id="search-input" placeholder="Pretraži" aria-label="Search">
+                        <button class="btn" type="submit">
+                            <img src="/media/images/lupa.png" alt="Pretraži" style="width: 30px;">
+                        </button>
+                        <!-- Organizacije -->
+                        <a class="nav-link link-dark" href="/organizacije" style="font-size:18px;">Organizacije</a>
+                    </form>
+                        
+                    
+                   
+                </div>  
+            </div>
+            {% if not request.user.is_authenticated %}
+            <!--Logovanje-->
+            <ul class="nav justify-content-end" id="loginNav">
+                <li class="nav-item">
+                    <a class="nav-link link-danger" style="font-size:18px;" href="{% url 'users:registracija'%}">Registracija</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-outline-danger rounded-pill" style="font-size:18px;" href="{% url 'users:logovanje'%}">Uloguj se</a>
+                </li>
+            </ul>
+            {% else %}
+            <ul class="nav justify-content-end">
+                 <!-- AKO JE OBICAN KORISNIK DUGME DONIRAJ-->
+                {% if not request.user.is_staff and not request.user.is_organization %} 
+                    <li class="nav-item">
+                        <a class="nav-link link-danger don" href="/oglasi/postaviOglas" style="font-size:18px;">Doniraj</a>
+                    </li>
+                {%endif%}
+                 <!-- AKO JE ADMIN ZAHTEVI I NALOZI-->
+                 {% if request.user.is_staff %}
+                   <li class="nav-item">
+                       <a class="nav-link link-dark " href="{% url 'users:zahtevi'%}">Zahtevi</a>
+                     </li>
+                     <li class="nav-item">
+                       <a class="nav-link link-dark nalozi " href="{% url 'users:nalozi'%}">Nalozi</a>
+                     </li>
+                  {% endif %}
+                <!--DROPDOWN ZA SVE ULOGOVANE-->
+                <li class="nav-item dropdown">
+                    {% if  request.user.is_staff %} <a href="{% url 'users:milica' request.user.id%}" class="nav-link link-secondary" id="profileDropdown"> 
+                    {% elif request.user.is_organization%} <a href="/organizacijaProfil" class="nav-link link-secondary" id="profileDropdown"> 
+                    {% else %} <a href="{% url 'users:milica' request.user.id%}" class="nav-link link-secondary" id="profileDropdown">   
+                    {%endif%}
+                <!--PROFILNA-->
+                <div class="rounded-circle manjaProfilna" >
+                    <img  src="{{ request.user.image.url }}" /> 
+                </div>
+
+                </a>
+                    <div class="dropdown-menu" aria-labelledby="profileDropdown">
+                        <a class="dropdown-item" href="/inbox">Inbox</a>
+                        <a class="dropdown-item" href="{% url 'users:promenaSlike' %}">Promeni profilnu sliku</a>
+                        <a class="dropdown-item" href="{% url 'users:promenaLozinke' %}">Promeni lozinku</a>
+                        <a class="dropdown-item" href="{% url 'users:logout' %}">Izloguj se</a>
+                    </div>
+            </li>
+        </ul>
+     {% endif %}
+        </div>
+    </nav>
+
+    {% block javascript %}
+    
+    {%endblock%}
+
+
+ <main>
+    {% block content %}
+    {% endblock %}
+
+    
+</main>
+</body>
+</html>
+
+<script src="{% static 'js/script.js' %}" defer></script>

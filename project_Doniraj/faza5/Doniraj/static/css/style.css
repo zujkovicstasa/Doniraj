@@ -1,0 +1,231 @@
+
+/*Author:Marija Stakic 2021/0320*/
+nav {
+    background-color: #f5f5f5;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+}
+
+.nav-item:hover .dropdown-menu {
+    display: block;
+}
+
+
+.margDesno{
+    margin-right: 20px;
+}
+#pocetna{
+    font-size: larger;
+    margin-left: -15px;
+}
+
+#artikli {
+    text-align: center;
+    padding: 12px;
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
+}
+#artikliAdmin {
+    text-align: center;
+    padding: 12px;
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
+}
+
+
+.card {
+    margin: 5px; 
+}
+
+.breadcrumb-item{
+    margin-left: 10px;
+}
+
+
+.proizvod {
+    display: flex;
+    align-items: center;
+    margin-top: 100px;
+    margin-right: 25%;
+    margin-left: 20%;
+}
+
+.slika {
+    flex: 0 0 50%; 
+    height: 100%;
+}
+
+.tekst {
+    flex: 0 0 50%; 
+    padding: 0 20px; 
+}
+
+.slika img {
+    max-width: 100%; 
+    height: auto;
+    min-width: 200px; 
+}
+
+#proizvod{
+    max-width: 100%; 
+    height: auto;
+    min-width: 200px; 
+}
+
+.marg{
+    margin-top: 20px;
+}
+
+.levo{
+    margin-left: 20px;
+}
+
+.levoMin{
+    margin-left: -20px;
+}
+
+.kont{
+    margin-left: -15px;
+}
+
+.malaSlova{
+    font-size: small;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .dropdown-menu.show {
+    display: block;
+  }
+  
+  .chat-box {
+    max-width: 400px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 20px auto 0; 
+}  
+
+.slovaVeca{
+    font-size: large;
+}
+.rounded-circle {
+    border-radius: 50%;
+    overflow: hidden;
+
+}
+
+.rounded-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.manjaProfilna {
+    width: 40px;
+    height: 40px;
+}
+
+.vecaProfilna{
+    width: 130px;
+    height: 130px;
+}
+.profile-image{
+    width: 200px;
+    height: 200px;
+}
+.obrisi{
+    font-weight: bold;
+    color: rgb(230, 72, 72);
+}
+
+.obrisi:hover {
+    background-color: darkgray;
+    color: rgb(230, 72, 72);
+}
+
+.same-height-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.card-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 350px; 
+    object-fit: cover;
+    
+}
+.organizacije-card-img{
+    width: 100%;
+    height: 200px; 
+    object-fit: cover;
+
+}
+.card-profile-image {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.profile-img-container {
+    width: 500px;
+    object-fit:cover;
+    overflow: hidden;
+    margin: 0 auto; 
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit:cover;
+    
+}
+
+.link-secondary {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #6c757d;
+}
+
+.link-secondary img {
+    margin-right: 8px;
+}
+
+.link-secondary:hover {
+    color: #495057;
+    text-decoration: underline;
+}
+
+.organization-name {
+    font-weight: bold;
+    font-size:40px;
+}
+
+
+
+.zaboravljena{
+    display: block;
+    margin-top:5px;
+}

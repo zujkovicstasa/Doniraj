@@ -1,0 +1,57 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Organizacija oglas
+{% endblock %}
+
+{% block content %}
+<!-- Author:Marija Stakic 2021/0320 -->
+<div class="container marg py-4">
+    <!-- Profilna slika i naziv organizacije -->
+    <div class="row align-items-center mb-4">
+        <div class="col-md-6 text-center">
+            <div class="profile-img-container">
+                <img src="{{ organization.user.image.url }}" alt="profilna" class="profile-img">
+            </div>
+        </div>
+        <div class="col-md-6 d-flex flex-column align-items-start">
+            <h2 class="organization-name fw-bold">{{ organization.name }}</h2>
+            <a href="{% url 'chat:start-chat' organization.user.username %}" class="link-secondary d-flex align-items-center mt-3">
+                <img src="/media/images/chat.png" alt="chat" width="30px" class="me-2">
+                Kontaktiraj
+            </a>
+        </div>
+    </div>
+
+    <!-- Adresa i website organizacije -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h4 class="fw-bold">Adresa:</h4>
+            <p class="lead">{{ organization.address }}</p>
+        </div>
+        {% if organization.website %}
+        <div class="col-md-6">
+            <h4 class="fw-bold">Website:</h4>
+            <p class="lead"><a href="{{ organization.website }}" class="text-decoration-none">{{ organization.website }}</a></p>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Opis organizacije -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <h3 class="fw-bold">Opis Organizacije</h3>
+            <p class="lead">{{ organization.description }}</p>
+        </div>
+    </div>
+
+    <!-- Potrebni predmeti -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <h3 class="fw-bold">Potrebne stvari</h3>
+            <p class="lead">{{ organization.needs_description }}</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

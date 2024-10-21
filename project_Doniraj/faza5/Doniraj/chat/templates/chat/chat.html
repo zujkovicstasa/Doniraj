@@ -1,0 +1,69 @@
+{% extends 'layout.html' %}
+{% block title %}
+    Chat
+{% endblock %}
+<!--Autor: Stasa Zujkovic 2021/0321-->
+{% block content %}
+<div class="container my-5">
+    <div id="chat_window" class="d-flex flex-column bg-white rounded shadow-lg p-2" style="height: 45rem;">
+       
+        <!-- PRIKAZ NALOGA -->
+        <div class="d-flex justify-content-center sticky-top z-index-10">
+            {% if other_user %}
+                <a href="{% url 'users:milica' other_user.id %}" class="text-decoration-none">
+                    <div class="d-flex align-items-center gap-2 py-3 sticky-top z-index-10">
+                        <img class="rounded-circle" src="{{other_user.image.url}}" style="width: 40px; height: 40px; object-fit: cover;">
+                        <div>
+                            <span class="text-muted">@{{other_user.username}}</span>
+                        </div>
+                    </div>
+                </a>
+            {% endif %}
+        </div>
+
+        <!-- CHAT CONTAINER-->
+        <div id='chat_container' class="overflow-auto flex-grow-1">
+            <ul id='chat_messages' class="d-flex flex-column gap-2 py-3">
+                {% for message in chat_messages %}
+                {% include 'chat/chat_message.html' %}
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- FORMA ZA PORUKE -->
+        <div class="position-sticky bottom-0 z-10 p-2 bg-white">
+            <div class="d-flex items-center rounded-3 px-2 py-2">
+                <form id="chat_message_form" class="w-100"
+                    hx-ext="ws"
+                    ws-connect="/ws/chatroom/{{chatroom_name}}"
+                    ws-send
+                    _="on htmx:wsAfterSend reset() me">
+                    {% csrf_token %}
+                    {{form.body}}
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+
+<!-- JS ZA SCROLL
+
+
+    function scrollToBottom() {
+        const container = document.getElementById('chat_container');
+        container.scrollTop = container.scrollHeight;
+    }
+    scrollToBottom();
+-->
+{% block javascript %}
+<script defer>
+    // Re-scroll to bottom on new message (HTMX event)
+    document.body.addEventListener('htmx:afterRequest', function(evt) {
+        if (evt.detail.target.id === 'chat_message_form') {
+            scrollToBottom();
+        }
+    });
+</script>
+{% endblock %}

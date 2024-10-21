@@ -1,0 +1,272 @@
+{
+  "id": "c36575ee-e0b9-4fa2-a4f2-58c7f6828218",
+  "version": "2.0",
+  "name": "Doniraj",
+  "url": "http://localhost:8000",
+  "tests": [{
+    "id": "808919e8-d5b0-4988-bc8f-4cfdb081d858",
+    "name": "PregledPojedinacnogOglasa",
+    "commands": [{
+      "id": "959defef-5270-4d8e-9b2c-5fc2e8db66a7",
+      "comment": "",
+      "command": "open",
+      "target": "/oglasi/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7505fed3-f069-4dc7-9475-7818854398f5",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1249x1032",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4d7a1817-19a5-440c-a5d7-011f68f0cc20",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col-md-6:nth-child(2) .card-img-top",
+      "targets": [
+        ["css=.col-md-6:nth-child(2) .card-img-top", "css:finder"],
+        ["xpath=//img[@alt='Odeća za bebe uzrast - 6 meseci']", "xpath:img"],
+        ["xpath=//div[@id='results-container']/div[2]/div/a/div/img", "xpath:idRelative"],
+        ["xpath=//div[2]/div/a/div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9afa2231-af5c-4464-98fd-133b43b22294",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "id=proizvod",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "ac39a479-d9cb-4f55-b8e8-6883245b3f78",
+    "name": "chat",
+    "commands": [{
+      "id": "bfc6e438-c6c9-4dbd-bcfb-86d0c161373b",
+      "comment": "",
+      "command": "open",
+      "target": "/oglasi/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d55e4afd-fc17-4d54-9c3a-e34656adc7d1",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1249x1032",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2121f92f-8f7b-402b-8342-50be39ba0cca",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Uloguj se",
+      "targets": [
+        ["linkText=Uloguj se", "linkText"],
+        ["css=.btn-outline-danger", "css:finder"],
+        ["xpath=//a[contains(text(),'Uloguj se')]", "xpath:link"],
+        ["xpath=//ul[@id='loginNav']/li[2]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/users/logovanje/')]", "xpath:href"],
+        ["xpath=//li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Uloguj se')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "8dfb5483-26ab-4a12-80b3-87f7427bd015",
+      "comment": "",
+      "command": "click",
+      "target": "id=emailLog",
+      "targets": [
+        ["id=emailLog", "id"],
+        ["name=email", "name"],
+        ["css=#emailLog", "css:finder"],
+        ["xpath=//input[@id='emailLog']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b9b028d1-7f84-4824-b024-542386e24c41",
+      "comment": "",
+      "command": "type",
+      "target": "id=emailLog",
+      "targets": [
+        ["id=emailLog", "id"],
+        ["name=email", "name"],
+        ["css=#emailLog", "css:finder"],
+        ["xpath=//input[@id='emailLog']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "korisnik1@gmail.com"
+    }, {
+      "id": "eb32a815-fec0-458c-9be8-863ab1fd36a2",
+      "comment": "",
+      "command": "click",
+      "target": "id=lozinkaLog",
+      "targets": [
+        ["id=lozinkaLog", "id"],
+        ["name=password", "name"],
+        ["css=#lozinkaLog", "css:finder"],
+        ["xpath=//input[@id='lozinkaLog']", "xpath:attributes"],
+        ["xpath=//div[2]/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0c47a16f-9e54-419f-a041-adfead2db6ce",
+      "comment": "",
+      "command": "type",
+      "target": "id=lozinkaLog",
+      "targets": [
+        ["id=lozinkaLog", "id"],
+        ["name=password", "name"],
+        ["css=#lozinkaLog", "css:finder"],
+        ["xpath=//input[@id='lozinkaLog']", "xpath:attributes"],
+        ["xpath=//div[2]/div/div/input", "xpath:position"]
+      ],
+      "value": "testnalog1"
+    }, {
+      "id": "d7c26eab-5c91-4097-91fe-dff1922c90e0",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=lozinkaLog",
+      "targets": [
+        ["id=lozinkaLog", "id"],
+        ["name=password", "name"],
+        ["css=#lozinkaLog", "css:finder"],
+        ["xpath=//input[@id='lozinkaLog']", "xpath:attributes"],
+        ["xpath=//div[2]/div/div/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "a4fb93ee-d45d-46c6-a356-bf116245418f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col-md-6:nth-child(1) .card-img-top",
+      "targets": [
+        ["css=.col-md-6:nth-child(1) .card-img-top", "css:finder"],
+        ["xpath=//img[@alt='Odeća za bebe uzrast - 3 meseca']", "xpath:img"],
+        ["xpath=//div[@id='results-container']/div/div/a/div/img", "xpath:idRelative"],
+        ["xpath=//div/a/div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f51c06fc-a4e1-4326-ba0c-41bf60b3a69f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.border",
+      "targets": [
+        ["css=.border", "css:finder"],
+        ["xpath=//img[@alt='Profilna slika']", "xpath:img"],
+        ["xpath=//div[2]/div/div/a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "93c0014e-031f-40ba-a770-48c6f1fbc016",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Kontaktiraj",
+      "targets": [
+        ["linkText=Kontaktiraj", "linkText"],
+        ["css=.link-secondary:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(@href, '/chat/chat/milicamaric')]", "xpath:href"],
+        ["xpath=//main/div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Kontaktiraj')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "db55b3ae-7869-4574-ace7-3b3b0e689e2c",
+      "comment": "",
+      "command": "click",
+      "target": "id=id_body",
+      "targets": [
+        ["id=id_body", "id"],
+        ["name=body", "name"],
+        ["css=#id_body", "css:finder"],
+        ["xpath=//input[@id='id_body']", "xpath:attributes"],
+        ["xpath=//form[@id='chat_message_form']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "50bc5c0a-5097-493b-b6c4-4ae2829d9a13",
+      "comment": "",
+      "command": "type",
+      "target": "id=id_body",
+      "targets": [
+        ["id=id_body", "id"],
+        ["name=body", "name"],
+        ["css=#id_body", "css:finder"],
+        ["xpath=//input[@id='id_body']", "xpath:attributes"],
+        ["xpath=//form[@id='chat_message_form']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "CAOOOOOOOOOOOOOOOO"
+    }, {
+      "id": "8b0a86e8-b860-4994-8e13-30159cbde6de",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=id_body",
+      "targets": [
+        ["id=id_body", "id"],
+        ["name=body", "name"],
+        ["css=#id_body", "css:finder"],
+        ["xpath=//input[@id='id_body']", "xpath:attributes"],
+        ["xpath=//form[@id='chat_message_form']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "fcec9898-a411-4646-98f7-f71072ef942b",
+      "comment": "",
+      "command": "click",
+      "target": "id=id_body",
+      "targets": [
+        ["id=id_body", "id"],
+        ["name=body", "name"],
+        ["css=#id_body", "css:finder"],
+        ["xpath=//input[@id='id_body']", "xpath:attributes"],
+        ["xpath=//form[@id='chat_message_form']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "42a0b594-1884-4b20-92c0-50ecf2fd031b",
+      "comment": "",
+      "command": "type",
+      "target": "id=id_body",
+      "targets": [
+        ["id=id_body", "id"],
+        ["name=body", "name"],
+        ["css=#id_body", "css:finder"],
+        ["xpath=//input[@id='id_body']", "xpath:attributes"],
+        ["xpath=//form[@id='chat_message_form']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "test 123 test"
+    }, {
+      "id": "8fbd2164-d59f-42f6-b5bd-e7069dca9ea7",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=id_body",
+      "targets": [
+        ["id=id_body", "id"],
+        ["name=body", "name"],
+        ["css=#id_body", "css:finder"],
+        ["xpath=//input[@id='id_body']", "xpath:attributes"],
+        ["xpath=//form[@id='chat_message_form']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }]
+  }],
+  "suites": [{
+    "id": "0ad56672-c44d-4c1a-9b5e-5c6ab010230c",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["http://localhost:8000/"],
+  "plugins": []
+}

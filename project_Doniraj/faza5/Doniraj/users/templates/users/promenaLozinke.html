@@ -1,0 +1,59 @@
+<!--Autori: Matija Milic i Marija Stakic-->
+{% extends 'layout.html' %}
+
+{% block title %}
+    Promena Lozinke
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 mx-auto">
+            <h2>Promena lozinke</h2>
+            {% if success_message %}
+                <div class="alert alert-success">
+                    {{ success_message }}
+                </div>
+                <script>
+                    setTimeout(function() {
+                        {% if  request.user.is_staff %} window.location.href="{% url 'users:milica' request.user.id%}" class="nav-link link-secondary" id="profileDropdown"> 
+                        {% elif request.user.is_organization%} window.location.href="/organizacijaProfil" class="nav-link link-secondary" id="profileDropdown"> 
+                        {% else %} window.location.href="{% url 'users:milica' request.user.id%}" class="nav-link link-secondary" id="profileDropdown">   {%endif%}
+                        }, {{ redirect_time }} * 1000); 
+                </script>
+            {% else %}
+                {% if error_message %}
+                    <div class="alert alert-danger">
+                        {{ error_message }}
+                    </div>
+                {% endif %}
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        {{ form.old_password.label_tag }}
+                        {{ form.old_password }}
+                        {% for error in form.old_password.errors %}
+                            <div class="text-danger">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.new_password1.label_tag }}
+                        {{ form.new_password1 }}
+                        {% for error in form.new_password1.errors %}
+                            <div class="text-danger">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.new_password2.label_tag }}
+                        {{ form.new_password2 }}
+                        {% for error in form.new_password2.errors %}
+                            <div class="text-danger">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                    <button type="submit" class="btn btn-danger" id="prihvati">Promeni</button>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

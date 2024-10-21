@@ -1,0 +1,41 @@
+<!--Autori: Matija Milic i Marija Stakic-->
+{% extends 'layout.html' %}
+
+{% block title %}
+    Zahtev
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <h2>Informacije o Zahtevu</h2>
+
+    <div class="card mt-4">
+        <div class="card-body">
+            <h5 class="card-title">Detalji Zahteva</h5>
+            <p class="card-text">
+                <strong>Ime Organizacije:</strong> {{ zahtev.organization.name }}<br>
+                <strong>E-mail adresa:</strong> {{ zahtev.organization.user.email }}<br>
+                <strong>Adresa:</strong> {{ zahtev.organization.address }}<br>
+                <strong>Identifikacioni broj (PIB):</strong> {{ zahtev.organization.pib }}<br>
+                {% if zahtev.organization.website %}
+                <strong>Link sajta organizacije:</strong> 
+                <a href="{{ zahtev.organization.website }}" class="link-danger">{{ zahtev.organization.website }}</a><br>
+                {% endif %}
+            </p>
+            <div class="text-center">
+                <form method="post" action="{% url 'users:approve_zahtev' zahtev.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-success mr-2">Odobri</button>
+                </form>
+                <form method="post" action="{% url 'users:reject_zahtev' zahtev.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Odbaci</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

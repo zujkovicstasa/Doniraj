@@ -1,0 +1,46 @@
+<!--Stasa Zujkovic 2021/0321-->
+{% extends 'layout.html' %}
+
+{% block title %}
+    Inbox
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <h2>Inbox</h2>
+    <ul class="list-group">
+        {% for chatroom in sorted_chat_groups %}
+            {% if chatroom.is_private %}
+                {% for member in chatroom.members.all %}
+                    {% if member != user %}
+                        <a href="{% url 'chat:chatroom' chatroom.group_name %}">
+                            <li class="list-group-item">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="font-weight-bold">
+                                        <img src="{{ member.image.url }}" height="45" width="45" alt="{{ member.user.username }}" class="d-inline-block rounded-circle border border-dark mb-2">
+                                        @{{ member.username }}
+                                    </div>
+                                    {% with last_message=chatroom.chat_messages.last %}
+                                    <div>
+                                        <small class="text-muted">{{ last_message.created|date:"d. F Y." }}</small>
+                                        <small class="text-muted">{{ last_message.created|time:"H:i" }}</small>
+                                    </div>
+                                    
+                                </div>
+                                <span class="text-muted">
+                                    {% if last_message %}
+                                        {{ last_message.body }}
+                                    {% endif %}
+                                    {% endwith %}
+                                </span>
+                            </li>
+                        </a>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

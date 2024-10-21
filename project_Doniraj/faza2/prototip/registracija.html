@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prototip</title>
+    <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <div class="row align-items-center">
+          <!-- Logo -->
+          <div class="col-auto">
+            <a class="navbar-brand" href="indeks.html">
+              <img src="images/doniraj.png" alt="logo" width="55" />
+            </a>
+          </div>
+          <!-- Početna -->
+          <div class="col-auto">
+            <a href="indeks.html" class="nav-link" id="pocetna">Početna</a>
+          </div>
+          <!-- Pretraživanje -->
+          <div class="col">
+            <form class="d-flex" role="search">
+              <input
+                class="form-control me-2"
+                type="search"
+                placeholder="Pretraži"
+                aria-label="Search"
+              />
+              <button class="btn" type="submit">
+                <img src="images/lupa.png" alt="Pretraži" style="width: 30px" />
+              </button>
+            </form>
+          </div>
+        </div>
+        <!--Logovanje-->
+        <ul class="nav justify-content-end">
+          <li class="nav-item">
+            <a class="nav-link link-danger" href="registracija.html"
+              >Registracija</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-outline-danger" href="logovanje.html"
+              >Uloguj se</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="marg">
+            <fieldset class="row mb-3">
+              <div class="col-sm-10">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="gridRadios"
+                    id="gridRadios1"
+                    value="option1"
+                    checked
+                    onclick="toggleFields('korisnik')"
+                  />
+                  <label class="form-check-label" for="gridRadios1">
+                    Korisnik
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="gridRadios"
+                    id="gridRadios2"
+                    value="option2"
+                    onclick="toggleFields('organizacija')"
+                  />
+                  <label class="form-check-label" for="gridRadios2">
+                    Organizacija
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+            <div class="col-auto marg" id="korisnikFields">
+              <form
+                id="registrationFormUser"
+                onsubmit="return submitFormUser()"
+              >
+                <label class="visually-hidden" for="autoSizingInputGroup"
+                  >Username</label
+                >
+                <div class="input-group" style="max-width: 310px">
+                  <div class="input-group-text">@</div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="username"
+                    id="autoSizingInputGroup"
+                    placeholder="Username"
+                  />
+                  <div class="col-sm-10 marg">
+                    <input
+                      type="email"
+                      class="form-control"
+                      name="email"
+                      placeholder="Email"
+                    />
+                    <br />
+                    <input
+                      type="password"
+                      class="form-control"
+                      name="password"
+                      placeholder="Lozinka"
+                    />
+                    <br />
+                    <input
+                      type="password"
+                      class="form-control"
+                      name="repeatPassword"
+                      placeholder="Ponovna lozinka"
+                    />
+                    <div id="errorContainer" style="color: red"></div>
+                    <button type="submit" class="btn btn-danger marg">
+                      Registruj se
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div
+            class="col-auto marg"
+            id="organizacijaFields"
+            style="display: none"
+          >
+            <form
+              id="registrationFormOrganization"
+              onsubmit="return submitFormOrganization()"
+            >
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputOrganizationName"
+                  placeholder="Ime Organizacije"
+                />
+                <br />
+                <input
+                  type="email"
+                  class="form-control"
+                  id="inputOrganizationEmail"
+                  placeholder="Email"
+                />
+                <br />
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputOrganizationAddress"
+                  placeholder="Adresa"
+                />
+                <br />
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputOrganizationPIB"
+                  placeholder="Identifikacioni broj (PIB)"
+                />
+                <br />
+                <input
+                  type="password"
+                  class="form-control"
+                  id="inputOrganizationPassword"
+                  placeholder="Lozinka"
+                />
+                <br />
+                <input
+                  type="password"
+                  class="form-control"
+                  id="inputOrganizationPasswordP"
+                  placeholder="Ponovna lozinka"
+                />
+                <br />
+                <input
+                  type="url"
+                  class="form-control"
+                  id="inputOrganizationWebsite"
+                  placeholder="Link sajta organizacije (opciono)"
+                />
+                <br />
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputOrganizationOpis"
+                  placeholder="Opis organizacije"
+                />
+                <br />
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputOrganizationStaTreba"
+                  placeholder="Opis potrebnih stvari"
+                />
+                <div id="errorContainerOrganization" style="color: red"></div>
+              </div>
+              <button type="submit" class="btn btn-danger marg">
+                Pošalji zahtev
+              </button>
+            </form>
+          </div>
+
+          <script>
+            function submitFormOrganization() {
+              var form = document.getElementById(
+                "registrationFormOrganization"
+              );
+              var name = form.elements["inputOrganizationName"].value;
+              var email = form.elements["inputOrganizationEmail"].value;
+              var address = form.elements["inputOrganizationAddress"].value;
+              var pib = form.elements["inputOrganizationPIB"].value;
+              var password = form.elements["inputOrganizationPassword"].value;
+              var repeatPassword =
+                form.elements["inputOrganizationPasswordP"].value;
+
+              var errorMessages = [];
+
+              if (
+                !name ||
+                !email ||
+                !address ||
+                !pib ||
+                !password ||
+                !repeatPassword
+              ) {
+                errorMessages.push("Popunite sva polja.");
+              }
+
+              if (password !== repeatPassword) {
+                errorMessages.push("Lozinke se ne poklapaju.");
+              }
+
+              var errorContainer = document.getElementById(
+                "errorContainerOrganization"
+              );
+              if (errorMessages.length > 0) {
+                errorContainer.innerHTML = "";
+                errorMessages.forEach(function (message) {
+                  var p = document.createElement("p");
+                  p.textContent = message;
+                  p.style.color = "red";
+                  errorContainer.appendChild(p);
+                });
+                return false;
+              }
+
+              alert("Vaš zahtev je poslat. Očekujte odgovor na e-mailu.");
+              return true;
+            }
+
+            function submitFormUser() {
+              var form = document.getElementById("registrationFormUser");
+              var username = form.elements["username"].value;
+              var email = form.elements["email"].value;
+              var password = form.elements["password"].value;
+              var repeatPassword = form.elements["repeatPassword"].value;
+
+              var errorMessages = [];
+
+              if (!username || !email || !password || !repeatPassword) {
+                errorMessages.push("Popunite sva polja.");
+              }
+
+              if (password !== repeatPassword) {
+                errorMessages.push("Lozinke se ne poklapaju.");
+              }
+
+              var errorContainer = document.getElementById("errorContainer");
+              if (errorMessages.length > 0) {
+                errorContainer.innerHTML = "";
+                errorMessages.forEach(function (message) {
+                  var p = document.createElement("p");
+                  p.textContent = message;
+                  p.style.color = "red";
+                  errorContainer.appendChild(p);
+                });
+                return false;
+              }
+
+              window.location.href = "profil.html";
+              return false;
+            }
+          </script>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

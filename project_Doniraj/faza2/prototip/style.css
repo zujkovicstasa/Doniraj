@@ -1,0 +1,91 @@
+.margDesno {
+  margin-right: 20px;
+}
+#pocetna {
+  font-size: larger;
+  margin-left: -15px;
+}
+
+#artikli {
+  text-align: center;
+  padding: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+#artikliAdmin {
+  text-align: center;
+  padding: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  margin: 10px;
+}
+
+.breadcrumb-item {
+  margin-left: 10px;
+}
+
+.proizvod {
+  display: flex;
+  align-items: center;
+  margin-top: 50px;
+  margin-left: 50px;
+}
+
+.slika {
+  flex: 0 0 50%;
+}
+
+.tekst {
+  flex: 0 0 50%;
+  padding: 0 20px;
+}
+
+.slika img {
+  max-width: 100%;
+  height: auto;
+}
+
+.marg {
+  margin-top: 20px;
+}
+
+.levo {
+  margin-left: 20px;
+}
+
+.kont {
+  margin-left: -15px;
+}
+
+.malaSlova {
+  font-size: small;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.chat-box {
+  max-width: 400px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 20px auto 0;
+}
+
+.slovaVeca {
+  font-size: large;
+}

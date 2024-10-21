@@ -1,0 +1,32 @@
+<!-- Author:Marija Stakic 2021/0320 -->
+{% extends 'layout.html' %}
+
+{% block title %}
+    Organizacije
+{% endblock %}
+
+{% block content %}
+<div class="container card-container py-4">
+    <div class="row justify-content-center">
+        {% for organization in organizations %}
+        <div class="col-12 col-md-6 col-lg-4 mb-4"> 
+            <div class="card card-shadow h-100">
+                <a href="/organizacijaOglas/{{ organization.id }}">
+                    <div class="text-center p-3"> 
+                        <img src="{{ organization.user.image.url }}" class="organizacija-card-img img-fluid card-profile-image" alt="slika" style="max-height: 200px; object-fit: cover;">
+                    </div>
+                </a>
+                <div class="card-body card-body-flex d-flex flex-column">
+                    <h5 class="card-title card-title-bold">{{ organization.name }}</h5>
+                    <p class="card-text card-text-muted">{{ organization.description|slice:":300" }}{% if organization.description|length > 300 %}...{% endif %}</p>
+                    <div class="mt-auto d-flex align-items-center card-contact-link">
+                        <img src="/media/images/chat.png" alt="chat" width="25px" class="me-2 card-chat-icon">
+                        <a href="{% url 'chat:start-chat' organization.user.username %}" class="link-secondary card-link-secondary " id = "kontaktirajDugme">Kontaktiraj</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

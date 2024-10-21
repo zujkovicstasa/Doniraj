@@ -1,0 +1,52 @@
+<!--Autori: Matija Milic i Marija Stakic-->
+{% extends 'layout.html' %}
+
+{% block title %}
+    Zaboravljena lozinka
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <h2>Zaboravljena lozinka</h2>
+            <form method="post">
+                {% csrf_token %}
+                {% if step == 1 %}
+                <div id="step1">
+                    <div class="mb-3">
+                        <input type="email" class="form-control" id="email" name="email" required placeholder="Email">
+                    </div>
+                    <button type="submit" class="btn btn-outline-danger" >Dalje</button>
+                </div>
+                {%endif%}
+                {% if step == 2 %}
+                <div id="step2" >
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="code" name="code" required placeholder="Kod">
+                    </div>
+                    <button type="submit" class="btn btn-outline-danger" >Dalje</button>
+                </div>
+                {%endif%}
+                {% if step == 3 %}
+                <div id="step3" >
+                    <div class="mb-3">
+                        <input type="password" class="form-control" id="newPassword" name="new_password" required placeholder="Nova lozinka">
+                    </div>
+                    <div class="mb-3">
+                        <input type="password" class="form-control" id="confirmPassword" name="confirm_password" required placeholder="Potvrdi novu lozinku">
+                    </div>
+                    <button type="submit" class="btn btn-danger">Potvrdi</button>
+                </div>
+                {%endif%}
+                {% if error %}
+                    <div class="alert alert-danger">{{ error }}</div>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,73 @@
+<!--Autori: Matija Milic i Marija Stakic-->
+{% extends 'layout.html' %}
+
+{% block title %}
+    Nalozi
+{% endblock %}
+{% block content %}
+
+<div class="container mt-4">
+    <h2>Lista Naloga</h2>
+
+
+    <div class="row mt-4 justify-content-center">
+        {% for korisnik in korisnici %}
+            <div class="col-md-4 mb-4">
+                <div class="card" style="width: 18rem;">
+                    <div class="text-center">
+                        <a href="{% url 'users:milica' korisnik.id %}">
+                            <img src="{{ korisnik.image.url }}" class="card-img-top rounded-circle vecaProfilna" alt="profil">
+                        </a>
+                        
+                    </div>
+                    <div class="card-body text-center">
+                        <h5 class="card-title">@{{ korisnik.username }}</h5>
+                        <button type="button" class="btn btn-light obrisi delete-button" data-user-id="{{ korisnik.id }}">
+                            <img src="/media/images/iks.png" alt="iks" width="20px"> Obriši Nalog
+                        </button>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+<form method="post" id="delete-form" style="display: none;">
+    {% csrf_token %}
+</form>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.delete-button').forEach(function(button) {
+            button.addEventListener('click', function() {
+                if (confirm("Da li ste sigurni da želite da obrišete nalog?")) {
+                    const userId = this.getAttribute('data-user-id');
+                    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    
+                    fetch(`/users/delete_account/${userId}/`, {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRFToken': csrftoken,
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            this.closest('.col-md-4').remove(); 
+                            alert(data.message);
+                        } else {
+                            alert(data.message);
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+                }
+            });
+        });
+    });
+    </script>
+
+{% endblock %}
+

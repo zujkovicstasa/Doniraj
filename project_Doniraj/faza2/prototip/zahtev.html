@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototip</title>
+    <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body onload="inicijalizujProdavnicu(8)">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <div class="row align-items-center">
+            <!-- Logo -->
+            <div class="col-auto">
+              <a class="navbar-brand" href="admin.html">
+                <img src="images/doniraj.png" alt="logo" width="55" >
+              </a>
+            </div>
+    
+            <!-- Početna -->
+            <div class="col-auto">
+              <a href="admin.html" class="nav-link" id="pocetna">Početna</a>
+            </div>
+            <!-- Pretraživanje -->
+            <div class="col">
+              <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Pretraži" aria-label="Search">
+                <button class="btn " type="submit">
+                  <img src="images/lupa.png" alt="Pretraži" style="width: 30px; ">
+                </button>
+              </form>
+            </div>  
+          </div>
+          <!--Features-->
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-link link-dark" href="organizacije.html">Organizacije</a>
+            </div>
+          </div>
+    
+          <!--Logovanje-->
+          <ul class="nav justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link link-dark " href="zahtevi.html">Zahtevi</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link link-dark " href="nalozi.html">Nalozi</a>
+              </li>
+            <li class="nav-item">
+              <a class="nav-link link-secondary " href="indeks.html">Izloguj se</a>
+            </li>
+            <li class="nav-item">
+              <a href="admin.html">
+                <img src="images/profil.png" width="40px" alt="profil">
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="container mt-4">
+        <h2>Informacije o Zahtevu</h2>
+    
+        <div class="card mt-4">
+            <div class="card-body">
+                <h5 class="card-title">Detalji Zahteva</h5>
+                <p class="card-text">
+                    <strong>Ime Organizacije:</strong> Organizacija<br>
+                    <strong>E-mail adresa:</strong> organizacija@example.com<br>
+                    <strong>Adresa:</strong> Adresa Organizacije<br>
+                    <strong>Identifikacioni broj (PIB):</strong> 123456789<br>
+                    <strong>Link sajta organizacije:</strong> <p class="link-danger">www.organizacija.com</p>
+                </p>
+                <div class="text-center">
+                    <button type="button" class="btn btn-success mr-2">Odobri</button>
+                    <button type="button" class="btn btn-danger">Odbaci</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

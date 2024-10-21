@@ -1,0 +1,27 @@
+<!--Autori: Matija Milic i Marija Stakic-->
+{% extends 'layout.html' %}
+
+{% block title %}
+    Zahtevi
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Lista Zahteva</h2>
+
+    <ul class="list-group">
+        {% for zahtev in zahtevi %}
+        <a href="{% url 'users:zahtev' zahtev.id %}">
+            <li class="list-group-item">
+                <div class="font-weight-bold">{{ zahtev.organization.name }}</div>
+                <small class="text-muted">{{ zahtev.time|date:"d. F Y." }}</small>
+            </li>
+        </a>
+        {% endfor %}
+    </ul>
+
+</div>
+
+{% endblock %}
+
